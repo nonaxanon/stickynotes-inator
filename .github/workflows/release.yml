@@ -55,9 +55,7 @@ jobs:
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
-        files: |
-          release/StickyNotesInator.exe
-          release/**
+        files: release/**
         tag_name: v${{ github.run_number }}
         name: StickyNotes-inator v${{ github.run_number }}
         body: |
