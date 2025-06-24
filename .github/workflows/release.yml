@@ -64,7 +64,6 @@ jobs:
           ### 📦 What's Included
           - **Windows x64 Executable**: Self-contained application
           - **No Installation Required**: Just download and run
-          - **All Dependencies Included**: .NET 8.0 runtime bundled
           
           ### 🚀 Installation
           1. Download `StickyNotesInator.exe` from the assets below
@@ -74,7 +73,7 @@ jobs:
           ### 💻 System Requirements
           - **OS**: Windows 10/11 (x64)
           - **Runtime**: .NET 8.0 (included in build)
-          - **Memory**: Minimal RAM requirements
+          - **Memory**: If you have enough to run Windows, you have enough to run this app
           
           ### 🔧 Features
           - Simple, elegant sticky notes interface
