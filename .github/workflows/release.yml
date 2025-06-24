@@ -37,8 +37,8 @@ jobs:
       run: |
         mkdir -p release
         copy publish\StickyNotesInator.exe release\
-        copy publish\*.dll release\ 2>nul || echo "No DLLs to copy"
-        copy publish\data\* release\data\ 2>nul || echo "No data files to copy"
+        if exist publish\*.dll copy publish\*.dll release\
+        if exist publish\data mkdir release\data && copy publish\data\* release\data\
         
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
