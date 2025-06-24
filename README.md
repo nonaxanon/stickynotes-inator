@@ -93,24 +93,6 @@ dotnet run
 - **Keyboard shortcuts** - Tab and Enter work normally in text areas
 - **Multiple monitors** - Notes work across all connected displays
 
-## 🏗️ Architecture
-
-### Project Structure
-```
-StickyNotes-inator/
-├── 📁 Forms/
-│   ├── MainForm.cs              # Application coordinator
-│   └── StickyNoteForm.cs        # Individual note interface
-├── 📁 Models/
-│   ├── Note.cs                  # Note data model
-│   └── NoteStorage.cs           # JSON persistence layer
-├── 📁 Services/
-│   └── TrayService.cs           # System tray management
-├── 📁 data/                     # Note storage directory
-├── Program.cs                   # Application entry point
-├── StickyNotesInator.csproj     # Project configuration
-└── README.md                    # This file
-```
 
 ## 🛠️ Development
 
