@@ -50,7 +50,7 @@ StickyNotes-inator is a lightweight, elegant sticky notes application that bring
 ### Installation
 
 #### Option 1: Download Release (Recommended)
-1. Go to the [Releases](https://github.com/jorvelazquez3/stickynotes-inator/releases) page
+1. Go to the [Releases](https://github.com/nonaxanon/stickynotes-inator/releases) page
 2. Download the latest `StickyNotesInator.zip`
 3. Extract to your preferred location
 4. Run `StickyNotesInator.exe`
@@ -58,7 +58,7 @@ StickyNotes-inator is a lightweight, elegant sticky notes application that bring
 #### Option 2: Build from Source
 ```bash
 # Clone the repository
-git clone https://github.com/jorvelazquez3/stickynotes-inator.git
+git clone https://github.com/nonaxanon/stickynotes-inator.git
 cd stickynotes-inator
 
 # Restore dependencies
@@ -215,6 +215,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ for Windows users**
 
-[⭐ Star this repo](https://github.com/jorvelazquez3/stickynotes-inator) | [🐛 Report a bug](https://github.com/jorvelazquez3/stickynotes-inator/issues) | [💡 Request a feature](https://github.com/jorvelazquez3/stickynotes-inator/issues/new)
+[⭐ Star this repo](https://github.com/nonaxanon/stickynotes-inator) | [🐛 Report a bug](https://github.com/nonaxanon/stickynotes-inator/issues) | [💡 Request a feature](https://github.com/nonaxanon/stickynotes-inator/issues/new)
 
 </div> 
