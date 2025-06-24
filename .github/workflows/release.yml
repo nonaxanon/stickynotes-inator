@@ -37,8 +37,8 @@ jobs:
       run: |
         mkdir -p release
         copy publish\StickyNotesInator.exe release\
-        if exist publish\*.dll copy publish\*.dll release\
-        if exist publish\data mkdir release\data && copy publish\data\* release\data\
+        if (Test-Path "publish\*.dll") { copy publish\*.dll release\ }
+        if (Test-Path "publish\data") { mkdir release\data; copy publish\data\* release\data\ }
         
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
