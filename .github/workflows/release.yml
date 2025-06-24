@@ -1,0 +1,95 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+env:
+  DOTNET_VERSION: '8.0.x'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+      
+    - name: Publish
+      run: dotnet publish -c Release -o ./publish --self-contained true -r win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=true
+      
+    - name: Create Release Directory
+      run: |
+        mkdir -p release
+        copy publish\StickyNotesInator.exe release\
+        copy publish\*.dll release\ 2>nul || echo "No DLLs to copy"
+        copy publish\data\* release\data\ 2>nul || echo "No data files to copy"
+        
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: StickyNotesInator-Windows-x64
+        path: release/
+        retention-days: 30
+        
+    - name: Create Release
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          release/StickyNotesInator.exe
+          release/**
+        tag_name: v${{ github.run_number }}
+        name: StickyNotes-inator v${{ github.run_number }}
+        body: |
+          ## 🗒️ StickyNotes-inator v${{ github.run_number }}
+          
+          ### 📦 What's Included
+          - **Windows x64 Executable**: Self-contained application
+          - **No Installation Required**: Just download and run
+          - **All Dependencies Included**: .NET 8.0 runtime bundled
+          
+          ### 🚀 Installation
+          1. Download `StickyNotesInator.exe` from the assets below
+          2. Run the executable (no installation needed)
+          3. The app will create a `data` folder for storing your notes
+          
+          ### 💻 System Requirements
+          - **OS**: Windows 10/11 (x64)
+          - **Runtime**: .NET 8.0 (included in build)
+          - **Memory**: Minimal RAM requirements
+          
+          ### 🔧 Features
+          - Simple, elegant sticky notes interface
+          - Material Design UI
+          - System tray integration
+          - Automatic data persistence
+          
+          ### 📝 Release Notes
+          - Automated release from master branch
+          - Build number: ${{ github.run_number }}
+          - Commit: ${{ github.sha }}
+          
+          ### 🔗 Links
+          - [Source Code](https://github.com/${{ github.repository }})
+          - [Issues](https://github.com/${{ github.repository }}/issues)
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
