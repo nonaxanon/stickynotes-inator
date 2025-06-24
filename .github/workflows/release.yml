@@ -31,7 +31,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
       
     - name: Publish
-      run: dotnet publish -c Release -o ./publish --self-contained true -r win-x64 /p:PublishSingleFile=true /p:PublishTrimmed=true
+      run: dotnet publish -c Release -o ./publish --self-contained true -r win-x64 /p:PublishSingleFile=true
       
     - name: Create Release Directory
       run: |
