@@ -13,8 +13,6 @@ StickyNotes-inator is a lightweight, elegant sticky notes application that bring
 
 ### 🎨 **Modern Design**
 - **Material Design styling** with rounded corners and shadows
-- **10 beautiful color themes** automatically assigned to each note
-- **Smooth animations** and hover effects
 - **Clean, minimalist interface** that doesn't clutter your desktop
 
 ### 📝 **Note Management**
@@ -22,13 +20,10 @@ StickyNotes-inator is a lightweight, elegant sticky notes application that bring
 - **Drag and drop** notes anywhere on your screen
 - **Auto-save functionality** - never lose your notes
 - **Persistent storage** - notes survive system restarts
-- **Resizable notes** to fit your content
 
 ### 🔧 **System Integration**
 - **System tray integration** - always accessible
 - **Show/Hide all notes** with tray menu options
-- **Global hotkeys** (coming soon)
-- **Always on top** - notes stay visible
 - **Minimal resource usage** - lightweight and fast
 
 ### 💾 **Data Management**
@@ -116,29 +111,6 @@ StickyNotes-inator/
 ├── StickyNotesInator.csproj     # Project configuration
 └── README.md                    # This file
 ```
-
-### Key Components
-
-#### **MainForm.cs**
-- **Application coordinator** - manages all note instances
-- **Event handling** - coordinates between tray service and notes
-- **Lifecycle management** - handles startup, shutdown, and persistence
-
-#### **StickyNoteForm.cs**
-- **Material Design UI** - modern styling with rounded corners
-- **Drag functionality** - smooth note movement
-- **Auto-save integration** - seamless data persistence
-- **Color theming** - dynamic color assignment
-
-#### **NoteStorage.cs**
-- **JSON persistence** - human-readable data format
-- **Error handling** - robust file operations
-- **Data validation** - ensures data integrity
-
-#### **TrayService.cs**
-- **System tray integration** - Windows-native tray icon
-- **Context menu** - intuitive user interface
-- **Notification support** - user feedback
 
 ## 🛠️ Development
 
