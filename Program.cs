@@ -1,5 +1,6 @@
 using StickyNotesInator.Forms;
 using Microsoft.Extensions.Logging;
+using System.Threading;
 
 namespace StickyNotesInator;
 
@@ -9,12 +10,24 @@ namespace StickyNotesInator;
 /// </summary>
 internal static class Program
 {
+    private static Mutex? _mutex;
+    private const string MutexName = "StickyNotesInator_SingleInstance";
+
     /// <summary>
     /// The main entry point for the application.
     /// </summary>
     [STAThread]
     static void Main()
     {
+        // Ensure only one instance is running
+        if (!EnsureSingleInstance())
+        {
+            MessageBox.Show("StickyNotes-inator is already running!", 
+                "Application Already Running", 
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
         try
         {
             // Enable Windows Forms visual styles
@@ -45,6 +58,46 @@ internal static class Program
             {
                 // If we can't even log, just continue
             }
+        }
+        finally
+        {
+            // Release the mutex when the application exits
+            ReleaseSingleInstance();
+        }
+    }
+
+    /// <summary>
+    /// Ensures only one instance of the application is running
+    /// </summary>
+    /// <returns>True if this is the first instance, false if another instance is already running</returns>
+    private static bool EnsureSingleInstance()
+    {
+        try
+        {
+            _mutex = new Mutex(true, MutexName, out bool createdNew);
+            return createdNew;
+        }
+        catch (Exception)
+        {
+            // If there's any error creating the mutex, assume another instance is running
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Releases the single instance mutex
+    /// </summary>
+    private static void ReleaseSingleInstance()
+    {
+        try
+        {
+            _mutex?.ReleaseMutex();
+            _mutex?.Dispose();
+            _mutex = null;
+        }
+        catch
+        {
+            // Ignore any errors during cleanup
         }
     }
 
